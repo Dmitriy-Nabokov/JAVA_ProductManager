@@ -1,23 +1,31 @@
 package ru.netology;
 
 public class ProductManager {
-    private ProductRepository repo;
+    private static ProductRepository repo;
 
     public void add(Product product) {                  // Добавляет товар в репозиторий
+
         repo.save(product);
     }
 
     public ProductManager(ProductRepository repo) {     // Осуществляет поиск товаров
+
         this.repo = repo;
     }
 
-    public Product[] searchBy(String text) {
-        Product[] result = new Product[0]; // тут будем хранить подошедшие запросу продукты
-        for (Product product: ProductRepository.findAll()) {
+    public Product[] searchBy(String text) {            // тут будем хранить подошедшие запросу продукты
+        Product[] result = new Product[0];
+        for (Product product: repo.findAll()) {
             if (matches(product, text)) {
-                // "добавляем в конец" массива result продукт product
+                Product[] tmp = new Product[result.length + 1];
+                for (int i = 0; i < result.length; i++) {
+                   tmp[i] = result[i];
+                }
+                tmp[tmp.length - 1] = product;
+                result = tmp;
             }
         }
+
         return result;
     }
 
