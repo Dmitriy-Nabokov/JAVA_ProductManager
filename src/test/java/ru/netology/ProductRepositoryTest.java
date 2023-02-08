@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 public class ProductRepositoryTest {
 
     Product product1 = new Book(1, "Колобок", 400, "Константин Ушинский");
-    Product product2 = new Smartphone(312, "XPeria Ray", 18000, "SonyEricsson");
+    Product product2 = new Smartphone(312, "XPeria Ray", 18_000, "SonyEricsson");
     Product product3 = new Book(41, "The fellowship of the Ring", 4_000, "J.R.R.Tolkien");
-    Product product4 = new Smartphone(544, "MI8", 20000, "Xiaomi");
+    Product product4 = new Smartphone(544, "MI8", 20_000, "Xiaomi");
 
     @Test
     public void saveProduct() {
@@ -36,6 +36,7 @@ public class ProductRepositoryTest {
 
         Product[] expected = {product1, product4};
         Product[] actual = repo.findAll();
+
 
         Assertions.assertArrayEquals(expected, actual);
     }

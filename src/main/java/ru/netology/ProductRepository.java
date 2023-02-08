@@ -2,9 +2,9 @@ package ru.netology;
 
 public class ProductRepository {
 
-    private static Product[] products = new Product[0];                // Массив товаров
+    private Product[] products = new Product[0];                // Массив товаров
 
-    public void save(Product product) {                                // Сохраняем товары
+    public void save(Product product) {                         // Сохраняем товары
         Product[] tmp = new Product[products.length + 1];
         for (int i = 0; i < products.length; i++) {
             tmp[i] = products[i];
@@ -13,7 +13,8 @@ public class ProductRepository {
         products = tmp;
     }
 
-    public static Product[] findAll() {                          // Получаем сохраненные товары
+    public Product[] findAll() {                                 // Получаем сохраненные товары
+
         return products;
     }
 

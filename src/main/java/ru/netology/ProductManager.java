@@ -1,7 +1,7 @@
 package ru.netology;
 
 public class ProductManager {
-    private static ProductRepository repo;
+    private ProductRepository repo;
 
     public void add(Product product) {                  // Добавляет товар в репозиторий
 
