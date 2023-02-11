@@ -4,7 +4,7 @@ public class ProductRepository {
 
     private Product[] products = new Product[0];                // Массив товаров
 
-    public void save(Product product) {                         // Сохраняем товары
+    public void add(Product product) {                         // Сохраняем товары
         Product[] tmp = new Product[products.length + 1];
         for (int i = 0; i < products.length; i++) {
             tmp[i] = products[i];
@@ -18,11 +18,11 @@ public class ProductRepository {
         return products;
     }
 
-    public void removeById(int id) {                             // Удаляем товар по ID
+    public void removeById(int removeId) {                       // Удаляем товар по ID
         Product[] tmp = new Product[products.length - 1];
         int copyToIndex = 0;
         for (Product item : products) {
-            if (item.getId() != id) {
+            if (item.getId() != removeId) {
                 tmp[copyToIndex] = item;
                 copyToIndex++;
             }

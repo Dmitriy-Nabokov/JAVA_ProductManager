@@ -12,7 +12,8 @@ public class Book extends Product {
         return author;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    @Override
+    public String toString() {
+        return name;
     }
 }

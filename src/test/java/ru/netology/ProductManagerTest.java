@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 
 public class ProductManagerTest {
 
-    ProductRepository repo = new ProductRepository();
-    ProductManager manager = new ProductManager(repo);
+    ProductRepository repository = new ProductRepository();
+    ProductManager manager = new ProductManager(repository);
 
     Product product1 = new Book(1, "Колобок", 400, "Константин Ушинский");
     Product product2 = new Smartphone(312, "XPeria Ray", 18_000, "SonyEricsson");
@@ -27,19 +27,17 @@ public class ProductManagerTest {
     }
 
     @Test
-    public void addProduct() {      // Добавить в репозиторий
+    public void shouldAddProduct() {                  // Добавить в репозиторий
 
         Product[] expected = {product1, product2, product3, product4, product5};
-        Product[] actual = repo.findAll();
+        Product[] actual = repository.findAll();
 
 
         Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test
-        public void shouldSearchProduct () {          // Осуществляем поиск по одному товару
-
-        manager.matches(product1, "Колоб");
+        public void shouldSearchProduct () {          // Находит 1 товар
 
         Product[] expected = {product1};
         Product[] actual = manager.searchBy("Колоб");
@@ -49,10 +47,7 @@ public class ProductManagerTest {
 
 
     @Test
-    public void shouldSearchTwoProducts () {          // Осуществляем поиск по нескольким товарам
-
-        manager.matches(product1, "олоб");
-        manager.matches(product5, "олоб");
+    public void shouldSearchTwoProducts () {          // Находит несколько товаров
 
         Product[] expected = {product1, product5};
         Product[] actual = manager.searchBy("олоб");
@@ -60,6 +55,15 @@ public class ProductManagerTest {
         Assertions.assertArrayEquals(expected, actual);
     }
 
+
+    @Test
+    public void shouldSearchNullProducts () {          // Не находит товаров по данному запросу
+
+        Product[] expected = {};
+        Product[] actual = manager.searchBy("Пушкин");
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
 
 
 }

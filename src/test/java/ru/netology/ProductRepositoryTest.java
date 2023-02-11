@@ -11,12 +11,12 @@ public class ProductRepositoryTest {
     Product product4 = new Smartphone(544, "MI8", 20_000, "Xiaomi");
 
     @Test
-    public void saveProduct() {
+    public void shouldSaveProduct() {
         ProductRepository repo = new ProductRepository();
-        repo.save(product1);
-        repo.save(product2);
-        repo.save(product3);
-        repo.save(product4);
+        repo.add(product1);
+        repo.add(product2);
+        repo.add(product3);
+        repo.add(product4);
 
         Product[] expected = {product1, product2, product3, product4};
         Product[] actual = repo.findAll();
@@ -25,12 +25,12 @@ public class ProductRepositoryTest {
     }
 
     @Test
-    public void removeByID() {
+    public void shouldRemoveByID() {
         ProductRepository repo = new ProductRepository();
-        repo.save(product1);
-        repo.save(product2);
-        repo.save(product3);
-        repo.save(product4);
+        repo.add(product1);
+        repo.add(product2);
+        repo.add(product3);
+        repo.add(product4);
         repo.removeById(product2.getId());
         repo.removeById(product3.getId());
 
